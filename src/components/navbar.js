@@ -33,6 +33,9 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
+            <Link to="/login" class="btn btn-outline-success" type="submit">
+              Login
+            </Link>
           </div>
         </div>
       </nav>

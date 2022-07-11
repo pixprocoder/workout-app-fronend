@@ -3,6 +3,7 @@ import "./index.css";
 // pages and components
 import Navbar from "./components/navbar";
 import Home from "./pages/home";
+import Login from "./pages/login";
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
       <div className="pages">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </div>
