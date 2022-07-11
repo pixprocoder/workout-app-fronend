@@ -28,3 +28,8 @@ body {
   margin: 0 6px;
   padding: 10px;
 }
+.card-text p {
+  margin: 0;
+  padding: 2px 0px;
+}
+/* ---------------------------------------------------------- */

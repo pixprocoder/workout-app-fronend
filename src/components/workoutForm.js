@@ -1,52 +1,88 @@
-import React from "react";
+import React, { useState } from "react";
 
-const WorkoutForm = () => {
-  const handleWorkout = (e) => {
+const WorkoutForm = ({ refetch }) => {
+  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
+  const [reps, setReps] = useState("");
+  const [load, setLoad] = useState("");
+  const [error, setError] = useState(null);
+
+  const handleWorkout = async (e) => {
     e.preventDefault();
+    const workout = {
+      name,
+      title,
+      reps,
+      load,
+    };
+
+    const response = await fetch("http://localhost:5000/api/workouts", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(workout),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      setError(data.error);
+    }
+    if (response.ok) {
+      refetch();
+    }
+    e.target.reset();
   };
   return (
     <section>
       <form onSubmit={handleWorkout}>
         <div>
-          <label for="Name" className="mb-1">
+          <label htmlFor="Name" className="mb-1">
             Name
           </label>
           <input
+            onChange={(e) => setName(e.target.value)}
+            required
             type="text"
-            class="form-control mb-2  form-control-sm"
+            className="form-control mb-2  form-control-sm"
             id="Name"
-            placeholder="Your name"
+            placeholder="Workout name"
           />
         </div>
         <div>
-          <label for="Title" className="mb-1">
+          <label htmlFor="Title" className="mb-1">
             Title
           </label>
           <input
+            required
+            onChange={(e) => setTitle(e.target.value)}
             type="text"
-            class="form-control mb-2  form-control-sm"
+            className="form-control mb-2  form-control-sm"
             id="Title"
-            placeholder="Title"
+            placeholder=" Workout title"
           />
         </div>
         <div>
-          <label for="Reps" className="mb-1">
+          <label htmlFor="Reps" className="mb-1">
             Reps
           </label>
           <input
-            type="text"
-            class="form-control mb-2  form-control-sm"
+            required
+            onChange={(e) => setReps(e.target.value)}
+            type="number"
+            className="form-control mb-2  form-control-sm"
             id="Reps"
             placeholder="Reps"
           />
         </div>
         <div>
-          <label for="Load" className="mb-1">
+          <label htmlFor="Load" className="mb-1">
             Load
           </label>
           <input
-            type="text"
-            class="form-control mb-2  form-control-sm"
+            required
+            onChange={(e) => setLoad(e.target.value)}
+            type="number"
+            className="form-control mb-2  form-control-sm"
             id="Load"
             placeholder="Load"
           />
@@ -58,6 +94,7 @@ const WorkoutForm = () => {
           value="ADD WORKOUT"
         />
       </form>
+      {error && <p>{error}</p>}
     </section>
   );
 };

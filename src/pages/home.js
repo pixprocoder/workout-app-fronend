@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useQuery } from "react-query";
 // components
 import WorkoutDetails from "../components/workoutDetails";
 import WorkoutForm from "../components/workoutForm";
 
 const Home = () => {
-  const [workouts, setWorkouts] = useState("");
-
-  useEffect(() => {
-    const fetchWorkouts = async () => {
-      const response = await fetch("http://localhost:5000/api/workouts");
-      const data = await response.json();
-      if (response.ok) {
-        setWorkouts(data);
-      }
-    };
-    fetchWorkouts();
-  }, []);
+  const {
+    data: workouts,
+    isLoading,
+    refetch,
+  } = useQuery("Workouts", () =>
+    fetch("http://localhost:5000/api/workouts", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+      },
+    }).then((res) => res.json())
+  );
+  if (isLoading) {
+    return <p>loading...</p>;
+  }
 
   return (
     <section>
@@ -23,13 +27,14 @@ const Home = () => {
       <div className="home">
         <div>
           <div className="workout-container">
-            {workouts.map((workout) => (
-              <WorkoutDetails key={workout._id} workout={workout} />
-            ))}
+            {workouts &&
+              workouts?.map((workout) => (
+                <WorkoutDetails key={workout._id} workout={workout} />
+              ))}
           </div>
         </div>
         <div className="workoutForm-container">
-          <WorkoutForm />
+          <WorkoutForm refetch={refetch} />
         </div>
       </div>
     </section>
