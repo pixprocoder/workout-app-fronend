@@ -1,7 +1,24 @@
 import React from "react";
+import { formatDistanceToNow } from "date-fns";
 
-const WorkoutDetails = ({ workout }) => {
-  const { name, title, reps, load, createdAt } = workout;
+const WorkoutDetails = ({ workout, refetch }) => {
+  const { name, title, reps, load, createdAt, _id } = workout;
+
+  const handleDelete = async () => {
+    const url = `http://localhost:5000/api/workouts/${_id}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    if (response.ok) {
+      refetch();
+    }
+  };
+
   return (
     <section>
       <div className="card ">
@@ -20,9 +37,15 @@ const WorkoutDetails = ({ workout }) => {
               <strong>Load: </strong>
               {load} k.g
             </p>
-            <p> {createdAt}</p>
+            <p>
+              {" "}
+              {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}
+            </p>
           </div>
         </div>
+        <button class="btn btn-danger me-2" onClick={handleDelete}>
+          delete
+        </button>
       </div>
     </section>
   );

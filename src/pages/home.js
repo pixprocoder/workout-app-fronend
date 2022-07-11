@@ -23,13 +23,19 @@ const Home = () => {
 
   return (
     <section>
-      <h1 className="text-center  py-4">WELCOME TO WORKOUT WORLD</h1>
+      <h1 className="text-center text-primary  py-4">
+        WELCOME TO WORKOUT WORLD
+      </h1>
       <div className="home">
         <div>
           <div className="workout-container">
             {workouts &&
               workouts?.map((workout) => (
-                <WorkoutDetails key={workout._id} workout={workout} />
+                <WorkoutDetails
+                  refetch={refetch}
+                  key={workout._id}
+                  workout={workout}
+                />
               ))}
           </div>
         </div>

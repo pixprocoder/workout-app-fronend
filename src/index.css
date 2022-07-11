@@ -17,14 +17,18 @@ body {
 }
 .workout-container {
   display: grid;
-  gap: 22px;
+  gap: 10px;
   grid-template-columns: repeat(1, 1fr);
+}
+.card {
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 10px;
+  align-items: center;
 }
 
 /* ---------------------------------------------------- */
 .workoutForm-container {
-  background-color: white;
-  border-radius: 7px;
   margin: 0 6px;
   padding: 10px;
 }

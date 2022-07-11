@@ -6,8 +6,8 @@ const Navbar = () => {
     <header className="container-fluid bg-light ">
       <nav className="navbar navbar-expand-lg container">
         <div className="container-fluid">
-          <Link to="/" className="navbar-brand" href="#">
-            WORKOUT
+          <Link to="/" className="navbar-brand text-warning fw-bold" href="#">
+            WORKOUT-BUDDY
           </Link>
           <button
             className="navbar-toggler"
@@ -32,23 +32,7 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to="/home" className="nav-link active" href="#">
-                  Link
-                </Link>
-              </li>
             </ul>
-            <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
           </div>
         </div>
       </nav>

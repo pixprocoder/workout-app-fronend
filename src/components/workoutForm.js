@@ -34,6 +34,7 @@ const WorkoutForm = ({ refetch }) => {
   };
   return (
     <section>
+      <h5 className="text-center text-primary ">ADD NEW WORKOUT</h5>
       <form onSubmit={handleWorkout}>
         <div>
           <label htmlFor="Name" className="mb-1">
