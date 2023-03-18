@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_apiKey,
-  authDomain: process.env.REACT_APP_authDomain,
-  projectId: process.env.REACT_APP_projectId,
-  storageBucket: process.env.REACT_APP_storageBucket,
-  messagingSenderId: process.env.REACT_APP_messagingSenderId,
-  appId: process.env.REACT_APP_appId,
+  apiKey: "AIzaSyAD5W27sD9yALjFquWcjYDF3a04F15UQsg",
+  authDomain: "workout-707d3.firebaseapp.com",
+  projectId: "workout-707d3",
+  storageBucket: "workout-707d3.appspot.com",
+  messagingSenderId: "435670635244",
+  appId: "1:435670635244:web:9e617ceb23db9019de0bc9",
 };
 
 const app = initializeApp(firebaseConfig);
